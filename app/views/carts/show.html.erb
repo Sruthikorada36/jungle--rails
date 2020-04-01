@@ -3,7 +3,8 @@
   <header class="page-header">
     <h1>My Cart</h1>
   </header>
-
+  
+  <% if !enhanced_cart.empty? %>
   <div class="panel panel-default items">
     <table class="table table-bordered">
       <thead>
@@ -25,7 +26,9 @@
             TOTAL:
           </th>
           <th>
+
             <%= sprintf("$%2.2f", cart_subtotal_cents / 100.0) %>
+
           </th>
         </tr>
       </tfoot>
@@ -48,5 +51,10 @@
       <% end %>
     </div>
   </div>
-
+  <% else %>
+    <div class="alert alert-info" role="alert">
+      <h3>cart is empty</h3>
+    </div>
+     <%= link_to 'back to home', :root %>
+  <% end %>
 </section>
