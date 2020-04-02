@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-
+  before_filter :authorize
   def index
     #user MODEL
     @products = Product.all.order(created_at: :desc)

@@ -1,9 +1,11 @@
+
 Rails.application.routes.draw do
 
   root to: 'products#index'
 
   resources :products, only: [:index, :show]
   resources :categories, only: [:show]
+  resource :about, only: [:show]
 
   resource :cart, only: [:show] do
     post   :add_item
@@ -17,7 +19,16 @@ Rails.application.routes.draw do
     resources :products, except: [:edit, :update, :show]
     resources :categories, only: [:index, :new, :create]
   end
-  get '/about', to: 'about#show'
+
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  get '/logout' => 'sessions#destroy'
+
+  get '/signup' => 'users#new'
+  post '/users' => 'users#create'
+ #Recieve the form and add to db
+
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
